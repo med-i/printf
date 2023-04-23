@@ -16,6 +16,8 @@ int _printf(const char *format, ...)
 	va_list ap;
 	unsigned int count = 0, i;
 
+	va_start(ap, format);
+
 	while (*format)
 	{
 		if (*format == '%')
@@ -27,7 +29,8 @@ int _printf(const char *format, ...)
 			{
 				if (conspe[i].spe == *format)
 				{
-					count = conspe[i].func(ap);
+					count += conspe[i].func(ap);
+					format++;
 					break;
 				}
 
@@ -40,8 +43,6 @@ int _printf(const char *format, ...)
 			format++;
 		}
 	}
-
-	va_start(ap, format);
 
 	va_end(ap);
 
