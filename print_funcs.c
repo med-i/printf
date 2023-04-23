@@ -81,32 +81,23 @@ int print_int(va_list ap)
 int print_binary(va_list ap) 
 {
     unsigned int n = va_arg(ap, unsigned int);
+    int count = 0;
+    int leading_zeros = 0;
     int size = sizeof(n) * 8;
-    char *buf = malloc(size + 1);
-	int i, leading_zeros, count = 0;
-	
-    buf[size] = '\0';
+    int i;
+
     for (i = size - 1; i >= 0; i--)
-	{
-        buf[i] = (n & 1) ? '1' : '0';
-        n >>= 1;
+    {
+        if ((n >> i) & 1)
+        {
+            count += write(1, "1", 1);
+            leading_zeros = 1;
+        }
+        else if (leading_zeros || i == 0)
+        {
+            count += write(1, "0", 1);
+        }
     }
-	leading_zeros = 0;
-    for (i = 0; i < size; i++) 
-	{
-        if (buf[i] == '0')
-			leading_zeros++;
-		else
-		break;
-    }
-    if (leading_zeros == size) 
-	{
-        write(1, "0", 1);
-    } 
-	else 
-	{
-        count += write(1, buf + leading_zeros, size - leading_zeros);
-    }
-    free(buf);
-	return (count);
+    
+    return count;
 }
