@@ -4,7 +4,7 @@ static con_spe conspe[] = {
 {'c', print_char},
 {'s', print_str},
 {'%', print_percent},
-{'0', NULL}};
+{'X', NULL}};
 
 /**
  * _printf - produces output according to a format.
@@ -46,7 +46,8 @@ int _printf(const char *format, ...)
 				i++;
 			}
 
-			count += print_percent(ap);
+			if (!conspe[i].spe)
+				count += print_percent(ap);
 		}
 		else
 		{
