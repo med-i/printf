@@ -21,8 +21,15 @@ int print_char(va_list ap)
  */
 int print_str(va_list ap)
 {
-	char *str = va_arg(ap, char *);
-	int len = _strlen(str);
+	int len;
+	char *str;
+
+	if (!va_arg(ap, char *))
+		str = "(null)";
+	else
+		str = va_arg(ap, char *);
+
+	len = _strlen(str);
 
 	return (write(1, str, len));
 }
