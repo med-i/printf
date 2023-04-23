@@ -45,6 +45,8 @@ int _printf(const char *format, ...)
 				}
 				i++;
 			}
+
+			count += print_percent(ap);
 		}
 		else
 		{
