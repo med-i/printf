@@ -27,6 +27,12 @@ int print_str(va_list ap)
 	return (write(1, str, len));
 }
 
+/**
+ * print_percent - prints a string.
+ * @ap: maco.
+ *
+ * Return: 1.
+ */
 int print_percent(va_list ap)
 {
 	char percent = '%';

@@ -34,7 +34,6 @@ int _printf(const char *format, ...)
 					format++;
 					break;
 				}
-
 				i++;
 			}
 		}
