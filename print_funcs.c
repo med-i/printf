@@ -31,7 +31,7 @@ int print_range(const char *str, int start, int end)
 	for (i = start; i < end; i++)
 		_putchar(str[i]);
 
-	return (--i);
+	return (end - start);
 }
 
 /**
