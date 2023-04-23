@@ -26,3 +26,11 @@ int print_str(va_list ap)
 
 	return (write(1, str, len));
 }
+
+int print_percent(va_list ap)
+{
+	char percent = '%';
+	(void)ap;
+
+	return (write(1, &percent, 1));
+}

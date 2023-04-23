@@ -11,6 +11,7 @@ int _printf(const char *format, ...)
 	con_spe conspe[] = {
 	    {'c', print_char},
 	    {'s', print_str},
+	    {'%', print_percent},
 	    {'0', NULL}};
 
 	va_list ap;
