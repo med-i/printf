@@ -55,25 +55,26 @@ int print_percent(va_list ap)
 int print_int(va_list ap)
 {
 	int n = va_arg(ap, int);
-	char buf[12];
-	int i = 0, sign = 0, count = 0;
+	unsigned int num = n;
+	int div = 1, count = 0;
+	char c;
 
 	if (n < 0)
 	{
-		n = -n;
-		sign = 1;
+		count += write(1, "-", 1);
+		num = -n;
 	}
 
-	do {
-		buf[i++] = n % 10 + '0';
-		n /= 10;
-	} while (n > 0);
+	while (num / div >= 10)
+		div *= 10;
 
-	if (sign)
-		buf[i++] = '-';
-
-	while (i >= 0)
-		count += write(1, &buf[--i], 1);
+	while (div >= 1)
+	{
+		c = '0' + num / div;
+		count += write(1, &c, 1);
+		num %= div;
+		div /= 10;
+	}
 
 	return (count);
 }
