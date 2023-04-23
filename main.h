@@ -1,27 +1,27 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdio.h>
+#include <unistd.h>
 #include <stdarg.h>
 
 /**
- * struct cs - conversion specifiers.
- * @cs: the specifier character.
- * @f: pointer to print function.
+ * struct con_spe - conversion specifiers.
+ * @spe: the specifier character.
+ * @func: pointer to print function.
  */
-typedef struct cs
+typedef struct con_spe
 {
-	char cs;
-	int (*f)(va_list ap);
-} cs;
+	char spe;
+	int (*func)(va_list ap);
+} con_spe;
 
-int _putchar(char c);
-int _strlen(const char *s);
 int _printf(const char *format, ...);
-void get_conspe(const char *str, char *s, int *idx);
-int print(const char *str);
-int print_range(const char *str, int start, int end);
-int print_str(va_list ap);
+
+/* print functions*/
 int print_char(va_list ap);
+int print_str(va_list ap);
+
+/* helper functions */
+int _strlen(const char *s);
 
 #endif
