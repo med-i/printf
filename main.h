@@ -24,8 +24,15 @@ int print_str(va_list ap);
 int print_percent(va_list ap);
 int print_int(va_list ap);
 int print_binary(va_list ap);
+int print_unsigned_int(va_list ap);
+int print_octal(va_list ap);
+int print_hex(va_list ap);
+int print_hex_uppercase(va_list ap);
 
 /* helper functions */
 int _strlen(const char *s);
+char *_strrev(char *str);
+char *_itoa(unsigned int num, int base);
+void _toupper(char *str);
 
 #endif
