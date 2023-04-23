@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 	unsigned int count = 0, i;
 
 	if (!format || (*format == '%' && *(format + 1) == '\0'))
-		return (1);
+		exit(-1);
 
 	va_start(ap, format);
 
