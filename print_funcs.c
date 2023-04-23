@@ -70,10 +70,10 @@ int print_int(va_list ap)
 	} while (n > 0);
 
 	if (sign)
-		buf[i] = '-';
+		buf[i++] = '-';
 
 	while (i >= 0)
-		count += write(1, &buf[i--], 1);
+		count += write(1, &buf[--i], 1);
 
 	return (count);
 }
