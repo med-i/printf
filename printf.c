@@ -1,10 +1,10 @@
 #include "main.h"
 
 static con_spe conspe[] = {
-    {'c', print_char},
-    {'s', print_str},
-    {'%', print_percent},
-    {'0', NULL}};
+{'c', print_char},
+{'s', print_str},
+{'%', print_percent},
+{'0', NULL}};
 
 /**
  * _printf - produces output according to a format.
