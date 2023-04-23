@@ -5,7 +5,8 @@ static con_spe conspe[] = {
 {'s', print_str},
 {'%', print_percent},
 {'i', print_int},
-{'d', print_int}};
+{'d', print_int},
+{'b', print_binary}};
 
 /**
  * _printf - produces output according to a format.
