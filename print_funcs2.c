@@ -36,7 +36,7 @@ int print_reverse(va_list ap)
 
 	if (!str)
 		str = "(NULL)";
-	for (i = _strlen(str); i >= 0; i--)
+	for (i = _strlen(str) - 1; i >= 0; i--)
 		count += write(1, &str[i], 1);
 	return (count);
 }
