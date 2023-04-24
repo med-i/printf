@@ -1,9 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <unistd.h>
 #include <stdarg.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 /**
  * struct con_spe - conversion specifiers.
@@ -30,7 +31,7 @@ int print_hex(va_list ap);
 int print_hex_uppercase(va_list ap);
 int print_str_wide(va_list ap);
 int print_pointer(va_list ap);
-
+int print_reverse(va_list ap);
 /* helper functions */
 int _strlen(const char *s);
 char *_strrev(char *str);

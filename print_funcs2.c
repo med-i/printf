@@ -23,3 +23,20 @@ int print_pointer(va_list ap)
 	free(str);
 	return (count);
 }
+/**
+ * print_reverse - function that prints a string in reverse.
+ * @ap: the string.
+ *
+ * Return: the count of printed characters.
+*/
+int print_reverse(va_list ap)
+{
+	char *str = va_arg(ap, char *);
+	int i, count = 0;
+
+	if (!str)
+		str = "(NULL)";
+	for (i = _strlen(str); i >= 0; i--)
+		count += write(1, &str[i], 1);
+	return (count);
+}
