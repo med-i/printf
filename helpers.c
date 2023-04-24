@@ -37,19 +37,31 @@ char *_strrev(char *str)
  */
 char *_itoa(unsigned long int num, int base)
 {
-	char *str = malloc(32 * sizeof(char));
-	int i = 0, rem;
+	char *str;
+	int i = 0, rem, digit = 0;
+	unsigned long int tmp = num;
 
 	if (num == 0)
+	{
+		str = malloc(sizeof(char) * 2);
 		str[i++] = '0';
+	}
 	else
+	{
+		while (tmp != 0)
+		{
+			tmp /= base;
+			digit++;
+		}
+		str = malloc(sizeof(char) * (digit + 1));
+
 		while (num != 0)
 		{
 			rem = num % base;
 			str[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
 			num /= base;
 		}
-
+	}
 	str[i] = '\0';
 	str = _strrev(str);
 	return (str);
