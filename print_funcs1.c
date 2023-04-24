@@ -59,7 +59,7 @@ int print_hex_uppercase(va_list ap)
 	int count = 0;
 
 	_toupper(str);
-	/* count += write(1, str, _strlen(str)); */
+	count += write(1, str, _strlen(str));
 	free(str);
 	return (count);
 }
