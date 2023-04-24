@@ -55,24 +55,11 @@ int print_hex(va_list ap)
 int print_hex_uppercase(va_list ap)
 {
 	unsigned int num = va_arg(ap, unsigned int);
-	char *hex_str = malloc(sizeof(char) * 9);
-	int i, rem, count = 0;
+	char *str = _itoa(num, 16);
+	int count = 0;
 
-	for (i = 0; i < 8; i++)
-		hex_str[i] = '\0';
-
-	while (i > 0)
-	{
-		rem = num % 16;
-		if (rem < 10)
-			hex_str[i] = rem + '0';
-		else
-			hex_str[i] = rem + 'A' - 10;
-		num = num / 16;
-		i--;
-	}
-	_toupper(hex_str);
-	count += write(1, hex_str, sizeof(char) * 9);
-	free(hex_str);
+	_toupper(str);
+	count += write(1, str, _strlen(str));
+	free(str);
 	return (count);
 }
