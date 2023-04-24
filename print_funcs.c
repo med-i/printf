@@ -88,20 +88,14 @@ int print_binary(va_list ap)
 {
 	unsigned int n = va_arg(ap, unsigned int);
 	int i, count = 0;
-	int leading_zeros = 0;
 	int size = sizeof(n) * 8;
 
 	for (i = size - 1; i >= 0; i--)
 	{
 		if ((n >> i) & 1)
-		{
 			count += write(1, "1", 1);
-			leading_zeros = 1;
-		}
-		else if (leading_zeros || i == 0)
-		{
+		else if (count > 0 || i == 0)
 			count += write(1, "0", 1);
-		}
 	}
 
 	return (count);

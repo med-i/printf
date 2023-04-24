@@ -1,22 +1,22 @@
 #include "main.h"
 
 static con_spe conspe[] = {
-{'c', print_char},
-{'s', print_str},
-{'%', print_percent},
-{'i', print_int},
-{'d', print_int},
-{'b', print_binary},
-{'u', print_unsigned_int},
-{'o', print_octal},
-{'x', print_hex},
-{'X', print_hex_uppercase}};
+    {'c', print_char},
+    {'s', print_str},
+    {'%', print_percent},
+    {'i', print_int},
+    {'d', print_int},
+    {'b', print_binary},
+    {'u', print_unsigned_int},
+    {'o', print_octal},
+    {'x', print_hex},
+    {'X', print_hex_uppercase}};
 
 /**
  * _printf - produces output according to a format.
  * @format:
  *
- * Return: the number of characters printed.
+ * Return: the number of characters printed, otherwise -1.
  */
 int _printf(const char *format, ...)
 {
