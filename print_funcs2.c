@@ -65,7 +65,6 @@ int print_rot13(va_list ap)
 				count += write(1, &rot13[j], 1);
 				break;
 			}
-
 		}
 		if (!letters[j])
 			count += write(1, &str[i], 1);
