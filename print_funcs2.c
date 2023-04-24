@@ -40,3 +40,32 @@ int print_reverse(va_list ap)
 		count += write(1, &str[i], 1);
 	return (count);
 }
+/**
+ * print_rot13 - function that encodes and prints @ap using the ROT13 cipher
+ * @ap: the string.
+ *
+ * Return: the count of printed characters
+*/
+int print_rot13(va_list ap)
+{
+	char *str = va_arg(ap, char *);
+	char letters[] = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
+	char rot13[] = "nNoOpPqQrRsStTuUvVwWxXyYzZaAbBcCdDeEfFgGhHiIjJkKlLmM";
+	int i, j, count = 0;
+
+	if (str == NULL)
+		str = "(NULL)";
+
+	for (i = 0; str[i]; i++)
+	{
+		for (j = 0; rot13[j]; j++)
+		{
+			if (letters[j] == str[i])
+			{
+				count += write(1, &rot13[j], 1);
+				break;
+			}
+		}
+	}
+	return (count);
+}

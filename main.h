@@ -32,6 +32,7 @@ int print_hex_uppercase(va_list ap);
 int print_str_wide(va_list ap);
 int print_pointer(va_list ap);
 int print_reverse(va_list ap);
+int print_rot13(va_list ap);
 /* helper functions */
 int _strlen(const char *s);
 char *_strrev(char *str);

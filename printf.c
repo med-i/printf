@@ -13,7 +13,8 @@ static con_spe conspe[] = {
 	{'X', print_hex_uppercase},
 	{'S', print_str_wide},
 	{'p', print_pointer},
-	{'r', print_reverse}};
+	{'r', print_reverse},
+	{'R', print_rot13}};
 
 /**
  * _printf - produces output according to a format.
