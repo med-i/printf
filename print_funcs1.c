@@ -71,6 +71,9 @@ int print_str_wide(va_list ap)
 	int i, count = 0;
 	char *code;
 
+	if (!str)
+		return (write(1, "(nil)", 6));
+
 	for (i = 0; str[i]; i++)
 		if (_isprint(str[i]))
 			count += write(1, &str[i], 1);
@@ -79,9 +82,8 @@ int print_str_wide(va_list ap)
 			count += write(1, "\\x", 2);
 			code = get_code(str[i]);
 			count += write(1, code, _strlen(code));
+			free(code);
 		}
-
-	free(code);
 
 	return (count);
 }
@@ -94,7 +96,7 @@ int print_pointer(va_list ap)
 	int count = 0;
 
 	if (!ptr)
-		return write(1, "(nil)", 5);
+		return (write(1, "(nil)", 5));
 
 	add = (unsigned long int)ptr;
 	str = _itoa(add, 16);
