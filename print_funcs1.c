@@ -11,7 +11,7 @@ int print_unsigned_int(va_list ap)
 	char *str = _itoa(num, 10);
 	int count = 0;
 
-	/* count += write(1, str, _strlen(str)); */
+	count += write(1, str, _strlen(str));
 	free(str);
 	return (count);
 }
