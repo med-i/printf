@@ -11,7 +11,8 @@ static con_spe conspe[] = {
     {'o', print_octal},
     {'x', print_hex},
     {'X', print_hex_uppercase},
-    {'S', print_str_wide}};
+    {'S', print_str_wide},
+    {'p', print_pointer},};
 
 /**
  * _printf - produces output according to a format.

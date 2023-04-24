@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * print_unsigned_int - prints an unsigned integer
@@ -82,5 +83,17 @@ int print_str_wide(va_list ap)
 
 	free(code);
 
+	return (count);
+}
+
+int print_pointer(va_list ap)
+{
+	unsigned long int add = va_arg(ap, unsigned long int);
+	char *str = _itoa(add, 16);
+	int count = 0;
+
+	count += write(1, "0x", 2);
+	count += write(1, str, _strlen(str));
+	free(str);
 	return (count);
 }

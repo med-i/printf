@@ -35,7 +35,7 @@ char *_strrev(char *str)
  * @base: the desired base
  * Return: the new number.
  */
-char *_itoa(unsigned int num, int base)
+char *_itoa(unsigned long int num, int base)
 {
 	char *str = malloc(32 * sizeof(char));
 	int i = 0, rem;
