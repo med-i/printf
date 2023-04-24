@@ -10,7 +10,8 @@ static con_spe conspe[] = {
     {'u', print_unsigned_int},
     {'o', print_octal},
     {'x', print_hex},
-    {'X', print_hex_uppercase}};
+    {'X', print_hex_uppercase},
+    {'S', print_str_wide}};
 
 /**
  * _printf - produces output according to a format.

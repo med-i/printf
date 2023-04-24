@@ -43,14 +43,13 @@ char *_itoa(unsigned int num, int base)
 	if (num == 0)
 		str[i++] = '0';
 	else
-	{
 		while (num != 0)
 		{
 			rem = num % base;
 			str[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
 			num /= base;
 		}
-	}
+
 	str[i] = '\0';
 	str = _strrev(str);
 	return (str);
@@ -68,4 +67,25 @@ void _toupper(char *str)
 			*str = *str - 32;
 		str++;
 	}
+}
+
+int _isprint(char c)
+{
+	return (c >= 32 && c < 127);
+}
+
+char *get_code(char c)
+{
+	char *code = malloc(3 * sizeof(char));
+
+	code = _itoa((int)c, 16);
+
+	if (_strlen(code) < 2)
+		code[1] = '0';
+
+	code[2] = '\0';
+	code = _strrev(code);
+	_toupper(code);
+
+	return (code);
 }

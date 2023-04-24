@@ -63,3 +63,24 @@ int print_hex_uppercase(va_list ap)
 	free(str);
 	return (count);
 }
+
+int print_str_wide(va_list ap)
+{
+	char *str = va_arg(ap, char *);
+	int i, count = 0;
+	char *code;
+
+	for (i = 0; str[i]; i++)
+		if (_isprint(str[i]))
+			count += write(1, &str[i], 1);
+		else
+		{
+			count += write(1, "\\x", 2);
+			code = get_code(str[i]);
+			count += write(1, code, _strlen(code));
+		}
+
+	free(code);
+
+	return (count);
+}
