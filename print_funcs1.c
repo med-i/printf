@@ -77,7 +77,7 @@ int print_str_wide(va_list ap)
 	char *code;
 
 	if (!str)
-		return (write(1, "(nil)", 6));
+		return (write(1, "(null)", 6));
 
 	for (i = 0; str[i]; i++)
 		if (_isprint(str[i]))
