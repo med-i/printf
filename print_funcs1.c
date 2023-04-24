@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * print_unsigned_int - prints an unsigned integer
@@ -64,7 +63,13 @@ int print_hex_uppercase(va_list ap)
 	free(str);
 	return (count);
 }
-
+/**
+ * print_str_wide - function that prints @ap while converting non-printable
+ * characters to their hexadecimal ASCII representation.
+ * @ap: the string to be printed.
+ *
+ * Return: the count of printed characters.
+*/
 int print_str_wide(va_list ap)
 {
 	char *str = va_arg(ap, char *);
@@ -85,23 +90,5 @@ int print_str_wide(va_list ap)
 			free(code);
 		}
 
-	return (count);
-}
-
-int print_pointer(va_list ap)
-{
-	void *ptr = va_arg(ap, void *);
-	unsigned long int add;
-	char *str;
-	int count = 0;
-
-	if (!ptr)
-		return (write(1, "(nil)", 5));
-
-	add = (unsigned long int)ptr;
-	str = _itoa(add, 16);
-	count += write(1, "0x", 2);
-	count += write(1, str, _strlen(str));
-	free(str);
 	return (count);
 }

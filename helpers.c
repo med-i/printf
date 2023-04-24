@@ -68,24 +68,14 @@ void _toupper(char *str)
 		str++;
 	}
 }
-
+/**
+ * _isprint - function that checks if @c is printable
+ * @c: the character to check
+ *
+ * Return: 1 if printable, 0 otherwise.
+*/
 int _isprint(char c)
 {
 	return (c >= 32 && c < 127);
 }
 
-char *get_code(char c)
-{
-	char *code = malloc(3 * sizeof(char));
-
-	code = _itoa((int)c, 16);
-
-	if (_strlen(code) < 2)
-		code[1] = '0';
-
-	code[2] = '\0';
-	code = _strrev(code);
-	_toupper(code);
-
-	return (code);
-}
