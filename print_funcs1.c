@@ -48,7 +48,6 @@ int print_octal(va_list ap, char flag)
  *
  * Return: the count of printed characters.
  */
-
 int print_hex(va_list ap, char flag)
 {
 	unsigned int num = va_arg(ap, unsigned int);
@@ -62,6 +61,7 @@ int print_hex(va_list ap, char flag)
 	free(str);
 	return (count);
 }
+
 /**
  * print_hex_uppercase - prints an unsigned integer in uppercase hexadecimal
  * @ap: arg.
@@ -69,7 +69,6 @@ int print_hex(va_list ap, char flag)
  *
  * Return: the count of printed characters.
  */
-
 int print_hex_uppercase(va_list ap, char flag)
 {
 	unsigned int num = va_arg(ap, unsigned int);

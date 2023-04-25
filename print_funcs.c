@@ -89,6 +89,7 @@ int print_int(va_list ap, char flag)
 
 	return (count);
 }
+
 /**
  * print_binary - prints @ap in base 2.
  * @ap: arg.
