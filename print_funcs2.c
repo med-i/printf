@@ -5,13 +5,14 @@
  * @ap: the pointer
  *
  * Return: the count of printed characters.
-*/
-int print_pointer(va_list ap)
+ */
+int print_pointer(va_list ap, char flag)
 {
 	void *ptr = va_arg(ap, void *);
 	unsigned long int add;
 	char *str;
 	int count = 0;
+	(void)flag;
 
 	if (!ptr)
 		return (write(1, "(nil)", 5));
@@ -20,6 +21,7 @@ int print_pointer(va_list ap)
 	str = _itoa(add, 16);
 	count += write(1, "0x", 2);
 	count += write(1, str, _strlen(str));
+
 	free(str);
 	return (count);
 }
@@ -28,16 +30,18 @@ int print_pointer(va_list ap)
  * @ap: the string.
  *
  * Return: the count of printed characters.
-*/
-int print_reverse(va_list ap)
+ */
+int print_reverse(va_list ap, char flag)
 {
 	char *str = va_arg(ap, char *);
 	int i, count = 0;
+	(void)flag;
 
 	if (!str)
 		str = "(NULL)";
 	for (i = _strlen(str) - 1; i >= 0; i--)
 		count += write(1, &str[i], 1);
+
 	return (count);
 }
 /**
@@ -45,13 +49,14 @@ int print_reverse(va_list ap)
  * @ap: the string.
  *
  * Return: the count of printed characters
-*/
-int print_rot13(va_list ap)
+ */
+int print_rot13(va_list ap, char flag)
 {
 	char *str = va_arg(ap, char *);
 	char letters[] = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
 	char rot13[] = "nNoOpPqQrRsStTuUvVwWxXyYzZaAbBcCdDeEfFgGhHiIjJkKlLmM";
 	int i, j, count = 0;
+	(void)flag;
 
 	if (str == NULL)
 		str = "(NULL)";
@@ -59,15 +64,15 @@ int print_rot13(va_list ap)
 	for (i = 0; str[i]; i++)
 	{
 		for (j = 0; rot13[j]; j++)
-		{
 			if (letters[j] == str[i])
 			{
 				count += write(1, &rot13[j], 1);
 				break;
 			}
-		}
+
 		if (!letters[j])
 			count += write(1, &str[i], 1);
 	}
+
 	return (count);
 }

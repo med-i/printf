@@ -6,9 +6,10 @@
  *
  * Return: 1.
  */
-int print_char(va_list ap)
+int print_char(va_list ap, char flag)
 {
 	char chr = va_arg(ap, int);
+	(void)flag;
 
 	return (write(1, &chr, 1));
 }
@@ -19,10 +20,11 @@ int print_char(va_list ap)
  *
  * Return: the count of printed characters.
  */
-int print_str(va_list ap)
+int print_str(va_list ap, char flag)
 {
 	int len;
 	char *str = va_arg(ap, char *);
+	(void)flag;
 
 	if (!str)
 		return (write(1, "(null)", 6));
@@ -38,10 +40,11 @@ int print_str(va_list ap)
  *
  * Return: 1.
  */
-int print_percent(va_list ap)
+int print_percent(va_list ap, char flag)
 {
 	char percent = '%';
 	(void)ap;
+	(void)flag;
 
 	return (write(1, &percent, 1));
 }
@@ -52,7 +55,7 @@ int print_percent(va_list ap)
  *
  * Return: the count of printed characters.
  */
-int print_int(va_list ap)
+int print_int(va_list ap, char flag)
 {
 	int n = va_arg(ap, int);
 	unsigned int num = n;
@@ -64,6 +67,10 @@ int print_int(va_list ap)
 		count += write(1, "-", 1);
 		num = -n;
 	}
+	else if (flag == '+')
+		count += write(1, "+", 1);
+	else if (flag == ' ')
+		count += write(1, " ", 1);
 
 	while (num / div >= 10)
 		div *= 10;
@@ -84,11 +91,12 @@ int print_int(va_list ap)
  *
  * Return: the count of printed characters.
  */
-int print_binary(va_list ap)
+int print_binary(va_list ap, char flag)
 {
 	unsigned int n = va_arg(ap, unsigned int);
 	int i, count = 0;
 	int size = sizeof(n) * 8;
+	(void)flag;
 
 	for (i = size - 1; i >= 0; i--)
 	{
