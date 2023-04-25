@@ -3,6 +3,7 @@
 /**
  * print_char - prints a character.
  * @ap: the character to print.
+ * @flag: the flag character.
  *
  * Return: 1.
  */
@@ -17,6 +18,7 @@ int print_char(va_list ap, char flag)
 /**
  * print_str - prints a string.
  * @ap: the string to print.
+ * @flag: the flag character.
  *
  * Return: the count of printed characters.
  */
@@ -37,6 +39,7 @@ int print_str(va_list ap, char flag)
 /**
  * print_percent - prints a string.
  * @ap: maco.
+ * @flag: the flag character.
  *
  * Return: 1.
  */
@@ -52,13 +55,14 @@ int print_percent(va_list ap, char flag)
 /**
  * print_int - prints an integer.
  * @ap: the integer to print.
+ * @flag: the flag character.
  *
  * Return: the count of printed characters.
  */
 int print_int(va_list ap, char flag)
 {
-	int long n = va_arg(ap, long int);
-	unsigned long int num = n;
+	int n = va_arg(ap, int);
+	unsigned int num = n;
 	int div = 1, count = 0;
 	char c;
 
@@ -88,6 +92,7 @@ int print_int(va_list ap, char flag)
 /**
  * print_binary - prints @ap in base 2.
  * @ap: arg.
+ * @flag: the flag character.
  *
  * Return: the count of printed characters.
  */
