@@ -7,7 +7,7 @@
  */
 int print_unsigned_int(va_list ap, char flag)
 {
-	unsigned int num = va_arg(ap, unsigned int);
+	unsigned long int num = va_arg(ap, unsigned int);
 	char *str = _itoa(num, 10);
 	int count = 0;
 	(void)flag;
