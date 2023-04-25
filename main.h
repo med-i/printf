@@ -42,5 +42,6 @@ void _toupper(char *str);
 int _isprint(char c);
 char *get_code(char c);
 char get_flag(char flag);
+long int get_int(va_list ap, char flag);
 
 #endif
