@@ -7,14 +7,13 @@
  *
  * Return: the count of printed characters.
  */
-int print_pointer(va_list ap, int flag, int length)
+int print_pointer(va_list ap, char flag)
 {
 	void *ptr = va_arg(ap, void *);
 	unsigned long int add;
 	char *str;
 	int count = 0;
 	(void)flag;
-	(void)length;
 
 	if (!ptr)
 		return (write(1, "(nil)", 5));
@@ -35,12 +34,11 @@ int print_pointer(va_list ap, int flag, int length)
  *
  * Return: the count of printed characters.
  */
-int print_reverse(va_list ap, int flag, int length)
+int print_reverse(va_list ap, char flag)
 {
 	char *str = va_arg(ap, char *);
 	int i, count = 0;
 	(void)flag;
-	(void)length;
 
 	if (!str)
 		str = "(NULL)";
@@ -57,14 +55,13 @@ int print_reverse(va_list ap, int flag, int length)
  *
  * Return: the count of printed characters
  */
-int print_rot13(va_list ap, int flag, int length)
+int print_rot13(va_list ap, char flag)
 {
 	char *str = va_arg(ap, char *);
 	char letters[] = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
 	char rot13[] = "nNoOpPqQrRsStTuUvVwWxXyYzZaAbBcCdDeEfFgGhHiIjJkKlLmM";
 	int i, j, count = 0;
 	(void)flag;
-	(void)length;
 
 	if (str == NULL)
 		str = "(NULL)";

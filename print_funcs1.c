@@ -7,15 +7,13 @@
  *
  * Return: the count of printed characters.
  */
-int print_unsigned_int(va_list ap, int flag, int length)
+int print_unsigned_int(va_list ap, char flag)
 {
-	unsigned long int num = va_arg(ap, unsigned long int);
-	char *str;
+	unsigned int num = va_arg(ap, unsigned int);
+	char *str = _itoa(num, 10);
 	int count = 0;
 	(void)flag;
 
-	num = resize_u(num, length);
-	str = _itoa(num, 10);
 	count += write(1, str, _strlen(str));
 
 	free(str);
@@ -29,14 +27,12 @@ int print_unsigned_int(va_list ap, int flag, int length)
  *
  * Return: the count of printed characters.
  */
-int print_octal(va_list ap, int flag, int length)
+int print_octal(va_list ap, char flag)
 {
-	unsigned long int num = va_arg(ap, unsigned long int);
-	char *str;
+	unsigned int num = va_arg(ap, unsigned int);
+	char *str = _itoa(num, 8);
 	int count = 0;
 
-	num = resize_u(num, length);
-	str = _itoa(num, 8);
 	if (flag == '#')
 		count += write(1, "0", 1);
 	count += write(1, str, _strlen(str));
@@ -52,14 +48,12 @@ int print_octal(va_list ap, int flag, int length)
  *
  * Return: the count of printed characters.
  */
-int print_hex(va_list ap, int flag, int length)
+int print_hex(va_list ap, char flag)
 {
-	unsigned long int num = va_arg(ap, unsigned long int);
-	char *str;
+	unsigned int num = va_arg(ap, unsigned int);
+	char *str = _itoa(num, 16);
 	int count = 0;
 
-	num = resize_u(num, length);
-	str = _itoa(num, 16);
 	if (flag == '#')
 		count += write(1, "0x", 2);
 	count += write(1, str, _strlen(str));
@@ -75,14 +69,12 @@ int print_hex(va_list ap, int flag, int length)
  *
  * Return: the count of printed characters.
  */
-int print_hex_uppercase(va_list ap, int flag, int length)
+int print_hex_uppercase(va_list ap, char flag)
 {
-	unsigned long int num = va_arg(ap, unsigned long int);
-	char *str;
+	unsigned int num = va_arg(ap, unsigned int);
+	char *str = _itoa(num, 16);
 	int count = 0;
 
-	num = resize_u(num, length);
-	str = _itoa(num, 16);
 	if (flag == '#')
 		count += write(1, "0X", 2);
 	_toupper(str);
@@ -100,13 +92,12 @@ int print_hex_uppercase(va_list ap, int flag, int length)
  *
  * Return: the count of printed characters.
  */
-int print_str_wide(va_list ap, int flag, int length)
+int print_str_wide(va_list ap, char flag)
 {
 	char *str = va_arg(ap, char *);
 	int i, count = 0;
 	char *code;
 	(void)flag;
-	(void)length;
 
 	if (!str)
 		return (write(1, "(null)", 6));
