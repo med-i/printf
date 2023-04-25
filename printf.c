@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
 {
 	va_list ap;
 	unsigned int count = 0, i;
-	char flag;
+	int flag, length;
 
 	if (!format)
 		return (-1);
@@ -36,30 +36,25 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			flag = get_flag(*(format + 1));
-
-			if (flag != -1)
-				format++;
-
 			format++;
+			flag = get_flag(&format);
+			length = get_length(&format);
+			
 			while (*format == ' ')
 				format++;
 			if (!*format)
 				return (-1);
 
-			if (*format == 'l' || *format == 'h')
-				format++;
-
 			for (i = 0; conspe[i].spe; i++)
 				if (conspe[i].spe == *format)
 				{
-					count += conspe[i].func(ap, flag);
+					count += conspe[i].func(ap, flag, length);
 					format++;
 					break;
 				}
 
 			if (!conspe[i].spe)
-				count += print_percent(ap, flag);
+				count += print_percent(ap, flag, length);
 		}
 		else
 			count += write(1, format++, 1);

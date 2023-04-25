@@ -7,10 +7,12 @@
  *
  * Return: 1.
  */
-int print_char(va_list ap, char flag)
+int print_char(va_list ap, int flag, int length)
 {
 	char chr = va_arg(ap, int);
+	
 	(void)flag;
+	(void)length;
 
 	return (write(1, &chr, 1));
 }
@@ -22,11 +24,12 @@ int print_char(va_list ap, char flag)
  *
  * Return: the count of printed characters.
  */
-int print_str(va_list ap, char flag)
+int print_str(va_list ap, int flag, int length)
 {
 	int len;
 	char *str = va_arg(ap, char *);
 	(void)flag;
+	(void)length;
 
 	if (!str)
 		return (write(1, "(null)", 6));
@@ -43,11 +46,12 @@ int print_str(va_list ap, char flag)
  *
  * Return: 1.
  */
-int print_percent(va_list ap, char flag)
+int print_percent(va_list ap, int flag, int length)
 {
 	char percent = '%';
 	(void)ap;
 	(void)flag;
+	(void)length;
 
 	return (write(1, &percent, 1));
 }
@@ -59,13 +63,14 @@ int print_percent(va_list ap, char flag)
  *
  * Return: the count of printed characters.
  */
-int print_int(va_list ap, char flag)
+int print_int(va_list ap, int flag, int length)
 {
-	int n = va_arg(ap, int);
-	unsigned int num = n;
+	long int n = va_arg(ap, long int);
+	unsigned long int num = n;
 	int div = 1, count = 0;
 	char c;
 
+	n = resize_int(n, length);
 	if (n < 0)
 	{
 		count += write(1, "-", 1);
@@ -97,12 +102,13 @@ int print_int(va_list ap, char flag)
  *
  * Return: the count of printed characters.
  */
-int print_binary(va_list ap, char flag)
+int print_binary(va_list ap, int flag, int length)
 {
 	unsigned int n = va_arg(ap, unsigned int);
 	int i, count = 0;
 	int size = sizeof(n) * 8;
 	(void)flag;
+	(void)length;
 
 	for (i = size - 1; i >= 0; i--)
 	{

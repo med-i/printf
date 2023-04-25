@@ -29,10 +29,48 @@ char *get_code(char c)
  * Return: the flag character, otherwise -1.
  * supporter flags are: + ' ' # 0 -.
  */
-char get_flag(char c)
+int get_flag(const char **format_p)
 {
-	if (c == '+' || c == ' ' || c == '#' || c == '0' || c == '-')
-		return (c);
+	const char *format = *format_p;
+	int flag = -1;
 
-	return (-1);
+	if (*format == '+' || *format == ' ' || *format == '#' || *format == '0' || *format == '-')
+	{
+		flag = *format;
+		format++;
+	}
+	
+	*format_p = format;
+	return (flag);
 }
+
+int get_length(const char **format_p)
+{
+	const char *format = *format_p;
+	int length = -1;
+
+	if (*format == 'l' || *format == 'h')
+	{
+		length = *format;
+		format++;
+	}
+	*format_p = format;
+	return (length);
+}
+
+long int resize_int(long int num, int length)
+{
+	if (length == 'l')
+		return (num);
+	else if (length == 'h')
+		return ((short) num);
+	
+	return ((int) num);
+}
+
+/* void padding(char c, int n)
+{
+    while (n-- > 0)
+        write(1, &c, 1);
+}
+ */
