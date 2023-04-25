@@ -36,7 +36,7 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			
+
 			flag = get_flag(*(format + 1));
 			if (flag != -1)
 				format++;

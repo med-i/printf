@@ -36,20 +36,31 @@ char get_flag(char c)
 
 	return (-1);
 }
-long int get_int(va_list ap, char length)
-{
-    if (length == 'l')
-        return (va_arg(ap, long int));
-    else if (length == 'h')
-        return ((short int)va_arg(ap, int));
-    else
-        return ((int)va_arg(ap, int));
-}
 
 char get_length(char c)
 {
 	if (c == 'l' || c == 'h')
 		return (c);
-	
+
 	return (-1);
-}	
+}
+
+long int get_int(va_list ap, char length)
+{
+	if (length == 'l')
+		return (va_arg(ap, long int));
+	else if (length == 'h')
+		return ((short int)va_arg(ap, int));
+	else
+		return ((int)va_arg(ap, int));
+}
+
+unsigned long int get_unsigned_int(va_list ap, char flag)
+{
+	if (flag == 'l')
+		return (va_arg(ap, unsigned long int));
+	else if (flag == 'h')
+		return ((unsigned short int)va_arg(ap, unsigned int));
+	else
+		return ((unsigned int)va_arg(ap, unsigned int));
+}
