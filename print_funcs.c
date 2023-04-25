@@ -61,31 +61,45 @@ int print_percent(va_list ap, char flag)
  */
 int print_int(va_list ap, char flag)
 {
-	int n = va_arg(ap, int);
-	unsigned int num = n;
+	long int n;
+	unsigned int num;
 	int div = 1, count = 0;
 	char c;
 
-	if (n < 0)
-	{
-		count += write(1, "-", 1);
-		num = -n;
-	}
-	else if (flag == '+')
-		count += write(1, "+", 1);
-	else if (flag == ' ')
-		count += write(1, " ", 1);
+	if (flag == 'l')
+		n = va_arg(ap, long int);
+	else if (flag == 'h')
+    {
+        n = va_arg(ap, int);
+        n = (short int)n;
+    }
+    else
+    {
+        n = va_arg(ap, int);
+        n = (int)n;
+    }
 
-	while (num / div >= 10)
-		div *= 10;
+    num = n;
+    if (n < 0)
+    {
+        count += write(1, "-", 1);
+        num = -n;
+    }
+    else if (flag == '+')
+        count += write(1, "+", 1);
+    else if (flag == ' ')
+        count += write(1, " ", 1);
 
-	while (div >= 1)
-	{
-		c = '0' + num / div;
-		count += write(1, &c, 1);
-		num %= div;
-		div /= 10;
-	}
+    while (num / div >= 10)
+        div *= 10;
+
+    while (div >= 1)
+    {
+        c = '0' + num / div;
+        count += write(1, &c, 1);
+        num %= div;
+        div /= 10;
+    }
 
 	return (count);
 }
