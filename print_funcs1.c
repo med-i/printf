@@ -7,7 +7,7 @@
  */
 int print_unsigned_int(va_list ap, char flag)
 {
-	unsigned long int num = va_arg(ap, unsigned int);
+	unsigned long int num = va_arg(ap, unsigned long int);
 	char *str = _itoa(num, 10);
 	int count = 0;
 	(void)flag;
@@ -24,7 +24,7 @@ int print_unsigned_int(va_list ap, char flag)
  */
 int print_octal(va_list ap, char flag)
 {
-	unsigned int num = va_arg(ap, unsigned int);
+	unsigned long int num = va_arg(ap, unsigned long int);
 	char *str = _itoa(num, 8);
 	int count = 0;
 
@@ -43,7 +43,7 @@ int print_octal(va_list ap, char flag)
  */
 int print_hex(va_list ap, char flag)
 {
-	unsigned int num = va_arg(ap, unsigned int);
+	unsigned long int num = va_arg(ap, unsigned long int);
 	char *str = _itoa(num, 16);
 	int count = 0;
 
@@ -62,7 +62,7 @@ int print_hex(va_list ap, char flag)
  */
 int print_hex_uppercase(va_list ap, char flag)
 {
-	unsigned int num = va_arg(ap, unsigned int);
+	unsigned long int num = va_arg(ap, unsigned long int);
 	char *str = _itoa(num, 16);
 	int count = 0;
 

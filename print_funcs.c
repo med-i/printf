@@ -57,7 +57,7 @@ int print_percent(va_list ap, char flag)
  */
 int print_int(va_list ap, char flag)
 {
-	int long n = va_arg(ap, int);
+	int long n = va_arg(ap, long int);
 	unsigned long int num = n;
 	int div = 1, count = 0;
 	char c;
