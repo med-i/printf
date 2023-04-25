@@ -36,12 +36,20 @@ char get_flag(char c)
 
 	return (-1);
 }
-long int get_int(va_list ap, char flag)
+long int get_int(va_list ap, char length)
 {
-    if (flag == 'l')
+    if (length == 'l')
         return (va_arg(ap, long int));
-    else if (flag == 'h')
+    else if (length == 'h')
         return ((short int)va_arg(ap, int));
     else
         return ((int)va_arg(ap, int));
 }
+
+char get_length(char c)
+{
+	if (c == 'l' || c == 'h')
+		return (c);
+	
+	return (-1);
+}	

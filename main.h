@@ -14,25 +14,25 @@
 typedef struct con_spe
 {
 	char spe;
-	int (*func)(va_list ap, char flag);
+	int (*func)(va_list ap, char flag, char length);
 } con_spe;
 
 int _printf(const char *format, ...);
 
 /* print functions*/
-int print_char(va_list ap, char flag);
-int print_str(va_list ap, char flag);
-int print_percent(va_list ap, char flag);
-int print_int(va_list ap, char flag);
-int print_binary(va_list ap, char flag);
-int print_unsigned_int(va_list ap, char flag);
-int print_octal(va_list ap, char flag);
-int print_hex(va_list ap, char flag);
-int print_hex_uppercase(va_list ap, char flag);
-int print_str_wide(va_list ap, char flag);
-int print_pointer(va_list ap, char flag);
-int print_reverse(va_list ap, char flag);
-int print_rot13(va_list ap, char flag);
+int print_char(va_list ap, char flag, char length);
+int print_str(va_list ap, char flag, char length);
+int print_percent(va_list ap, char flag, char length);
+int print_int(va_list ap, char flag, char length);
+int print_binary(va_list ap, char flag, char length);
+int print_unsigned_int(va_list ap, char flag, char length);
+int print_octal(va_list ap, char flag, char length);
+int print_hex(va_list ap, char flag, char length);
+int print_hex_uppercase(va_list ap, char flag, char length);
+int print_str_wide(va_list ap, char flag, char length);
+int print_pointer(va_list ap, char flag, char length);
+int print_reverse(va_list ap, char flag, char length);
+int print_rot13(va_list ap, char flag, char length);
 
 /* helper functions */
 int _strlen(const char *s);
@@ -42,6 +42,7 @@ void _toupper(char *str);
 int _isprint(char c);
 char *get_code(char c);
 char get_flag(char flag);
-long int get_int(va_list ap, char flag);
+long int get_int(va_list ap, char length);
+char get_length(char c);
 
 #endif
