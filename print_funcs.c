@@ -48,8 +48,10 @@ int print_char(va_list ap, char flag, int width, char length)
  */
 int print_str(va_list ap, char flag, int width, char length)
 {
-	int len;
+	int len, count = 0;
 	char *str = va_arg(ap, char *);
+	int padding_len;
+	char padding;
 	(void)flag;
 	(void)width;
 	(void)length;
@@ -59,7 +61,27 @@ int print_str(va_list ap, char flag, int width, char length)
 
 	len = _strlen(str);
 
-	return (write(1, str, len));
+	if (width > len)
+	{
+		padding_len = width - len;
+		padding = (flag == '0') ? '0' : ' ';
+		if (flag == '-')
+		{
+			count += write(1, str, len);
+			while (padding_len--)
+				count += write(1, &padding, 1);
+		}
+		else
+		{
+			while (padding_len--)
+				count += write(1, &padding, 1);
+			count += write(1, str, len);
+		}
+	}
+	else
+		count += write(1, str, len);
+
+	return (count);
 }
 
 /**
