@@ -21,7 +21,7 @@ int print_unsigned_int(va_list ap, char flag, int width, char length)
 	num = get_unsigned_int(ap, length);
 	str = _itoa(num, 10);
 	str_len = _strlen(str);
-	
+
 	if (width > str_len)
 	{
 		padding_len = width - str_len;
