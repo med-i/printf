@@ -9,12 +9,14 @@
  */
 int print_unsigned_int(va_list ap, char flag, int width, char length)
 {
-	unsigned int num = va_arg(ap, unsigned int);
-	char *str = _itoa(num, 10);
+	unsigned long int num;
+	char *str;
 	int count = 0;
 	(void)flag;
-	(void)length;
 	(void)width;
+
+	num = get_unsigned_int(ap, length);
+	str = _itoa(num, 10);
 
 	count += write(1, str, _strlen(str));
 
@@ -31,11 +33,13 @@ int print_unsigned_int(va_list ap, char flag, int width, char length)
  */
 int print_octal(va_list ap, char flag, int width, char length)
 {
-	unsigned int num = va_arg(ap, unsigned int);
-	char *str = _itoa(num, 8);
+	unsigned long int num;
+	char *str;
 	int count = 0;
-	(void)length;
 	(void)width;
+
+	num = get_unsigned_int(ap, length);
+	str = _itoa(num, 8);
 
 	if (flag == '#')
 		count += write(1, "0", 1);
@@ -54,11 +58,13 @@ int print_octal(va_list ap, char flag, int width, char length)
  */
 int print_hex(va_list ap, char flag, int width, char length)
 {
-	unsigned int num = va_arg(ap, unsigned int);
-	char *str = _itoa(num, 16);
+	unsigned long int num;
+	char *str;
 	int count = 0;
-	(void)length;
 	(void)width;
+
+	num = get_unsigned_int(ap, length);
+	str = _itoa(num, 16);
 
 	if (flag == '#')
 		count += write(1, "0x", 2);
@@ -77,11 +83,13 @@ int print_hex(va_list ap, char flag, int width, char length)
  */
 int print_hex_uppercase(va_list ap, char flag, int width, char length)
 {
-	unsigned int num = va_arg(ap, unsigned int);
-	char *str = _itoa(num, 16);
+	unsigned long int num;
+	char *str;
 	int count = 0;
-	(void)length;
 	(void)width;
+
+	num = get_unsigned_int(ap, length);
+	str = _itoa(num, 16);
 
 	if (flag == '#')
 		count += write(1, "0X", 2);

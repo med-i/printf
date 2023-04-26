@@ -42,9 +42,10 @@ void _toupper(char *str);
 int _isprint(char c);
 char *get_code(char c);
 char get_flag(char flag);
-long int get_int(va_list ap, char length);
 char get_length(char c);
 int get_width(const char **format);
 int _isdigit(char c);
+long int get_int(va_list ap, char length);
+unsigned long int get_unsigned_int(va_list ap, char flag);
 
 #endif
