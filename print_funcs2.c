@@ -4,6 +4,8 @@
  * print_pointer - function that prints the adress of @ap
  * @ap: the pointer
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */
@@ -33,6 +35,8 @@ int print_pointer(va_list ap, char flag, int width, char length)
  * print_reverse - function that prints a string in reverse.
  * @ap: the string.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */
@@ -56,6 +60,8 @@ int print_reverse(va_list ap, char flag, int width, char length)
  * print_rot13 - function that encodes and prints @ap using the ROT13 cipher
  * @ap: the string.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters
  */

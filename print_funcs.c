@@ -4,6 +4,8 @@
  * print_char - prints a character.
  * @ap: the character to print.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: 1.
  */
@@ -21,6 +23,8 @@ int print_char(va_list ap, char flag, int width, char length)
  * print_str - prints a string.
  * @ap: the string to print.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */
@@ -44,6 +48,8 @@ int print_str(va_list ap, char flag, int width, char length)
  * print_percent - prints a string.
  * @ap: maco.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: 1.
  */
@@ -62,54 +68,57 @@ int print_percent(va_list ap, char flag, int width, char length)
  * print_int - prints an integer.
  * @ap: the integer to print.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */
 int print_int(va_list ap, char flag, int width, char length)
 {
-    long int n;
-    unsigned int num;
-    int div = 1, count = 0, num_digits = 1;
-    char c, pad_char = ' ';
+	long int n;
+	unsigned int num;
+	int div = 1, count = 0, num_digits = 1;
+	char c, pad_char = ' ';
 	int padding;
 
-    n = get_int(ap, length);
-    num = n;
+	n = get_int(ap, length);
+	num = n;
 
-    if (n < 0)
-    {
-        count += write(1, "-", 1);
-        num = -n;
-    }
-    else if (flag == '+')
-        count += write(1, "+", 1);
-    else if (flag == ' ')
-        count += write(1, " ", 1);
-
-    while (num / div >= 10)
+	if (n < 0)
 	{
-        div *= 10;
+		count += write(1, "-", 1);
+		num = -n;
+	}
+	else if (flag == '+')
+		count += write(1, "+", 1);
+	else if (flag == ' ')
+		count += write(1, " ", 1);
+
+	while (num / div >= 10)
+	{
+		div *= 10;
 		num_digits++;
 	}
 	padding = width - num_digits;
 	while (padding-- > 0)
 		count += write(1, &pad_char, 1);
-		
-    while (div >= 1)
-    {
-        c = '0' + num / div;
-        count += write(1, &c, 1);
-        num %= div;
-        div /= 10;
-    }
+	while (div >= 1)
+	{
+		c = '0' + num / div;
+		count += write(1, &c, 1);
+		num %= div;
+		div /= 10;
+	}
 
-    return (count);
+	return (count);
 }
 
 /**
  * print_binary - prints @ap in base 2.
  * @ap: arg.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */

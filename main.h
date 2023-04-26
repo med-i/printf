@@ -46,6 +46,6 @@ char get_length(char c);
 int get_width(const char **format);
 int _isdigit(char c);
 long int get_int(va_list ap, char length);
-unsigned long int get_unsigned_int(va_list ap, char flag);
+unsigned long int get_unsigned_int(va_list ap, char length);
 
 #endif

@@ -4,6 +4,8 @@
  * print_unsigned_int - prints an unsigned integer
  * @ap: arg.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */
@@ -28,6 +30,8 @@ int print_unsigned_int(va_list ap, char flag, int width, char length)
  * print_octal - prints an unsigned integer in octal format
  * @ap: arg.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */
@@ -53,6 +57,8 @@ int print_octal(va_list ap, char flag, int width, char length)
  * print_hex - prints an unsigned integer in lowercase hexadecimal
  * @ap: arg.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */
@@ -78,6 +84,8 @@ int print_hex(va_list ap, char flag, int width, char length)
  * print_hex_uppercase - prints an unsigned integer in uppercase hexadecimal
  * @ap: arg.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */
@@ -105,6 +113,8 @@ int print_hex_uppercase(va_list ap, char flag, int width, char length)
  * characters to their hexadecimal ASCII representation.
  * @ap: the string to be printed.
  * @flag: the flag character.
+ * @width: ...
+ * @length: ...
  *
  * Return: the count of printed characters.
  */

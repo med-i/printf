@@ -1,28 +1,6 @@
 #include "main.h"
 
 /**
- * get_code - function that converts @c to its hexadecimal ASCII representation
- * @c: the character to be converted.
- *
- * Return: a string containing the hexadecimal ASCII representation of @c.
- */
-char *get_code(char c)
-{
-	char *code = malloc(3 * sizeof(char));
-
-	code = _itoa((int)c, 16);
-
-	if (_strlen(code) < 2)
-		code[1] = '0';
-
-	code[2] = '\0';
-	code = _strrev(code);
-	_toupper(code);
-
-	return (code);
-}
-
-/**
  * get_flag - gets the flag character.
  * @c: the character to check.
  *
@@ -36,7 +14,12 @@ char get_flag(char c)
 
 	return (-1);
 }
-
+/**
+ * get_length - function that checks for length modifier
+ * @c: the character to check
+ *
+ * Return: @c if it is 'l' or 'h', -1 otherwise.
+*/
 char get_length(char c)
 {
 	if (c == 'l' || c == 'h')
@@ -44,7 +27,12 @@ char get_length(char c)
 
 	return (-1);
 }
-
+/**
+ * get_width - function that extracts the width value from a format specifier
+ * @format: pointer to a pointer to the format specifier string
+ *
+ * Return: the width value as an integer, or 0 if not npecified.
+*/
 int get_width(const char **format)
 {
 	int width = 0;
@@ -57,6 +45,14 @@ int get_width(const char **format)
 	}
 	return (width);
 }
+/**
+ * get_int - resizes @ap to @length
+ * @ap: the va_list to extract the integer from.
+ * @length: the length specifier for the integer type
+ * 'l' for long, 'h' for short.
+ *
+ * Return: the resized int.
+*/
 long int get_int(va_list ap, char length)
 {
 	if (length == 'l')
@@ -66,12 +62,19 @@ long int get_int(va_list ap, char length)
 	else
 		return ((int)va_arg(ap, int));
 }
-
-unsigned long int get_unsigned_int(va_list ap, char flag)
+/**
+ * get_unsigned_int - resizes @ap to @length
+ * @ap: the va_list to extract the integer from.
+ * @length: the length specifier for the integer type
+ * 'l' for long, 'h' for short.
+ *
+ * Return: the resized int.
+*/
+unsigned long int get_unsigned_int(va_list ap, char length)
 {
-	if (flag == 'l')
+	if (length == 'l')
 		return (va_arg(ap, unsigned long int));
-	else if (flag == 'h')
+	else if (length == 'h')
 		return ((unsigned short int)va_arg(ap, unsigned int));
 	else
 		return ((unsigned int)va_arg(ap, unsigned int));
