@@ -7,10 +7,11 @@
  *
  * Return: 1.
  */
-int print_char(va_list ap, char flag, char length)
+int print_char(va_list ap, char flag, int width, char length)
 {
 	char chr = va_arg(ap, int);
 	(void)flag;
+	(void)width;
 	(void)length;
 
 	return (write(1, &chr, 1));
@@ -23,11 +24,12 @@ int print_char(va_list ap, char flag, char length)
  *
  * Return: the count of printed characters.
  */
-int print_str(va_list ap, char flag, char length)
+int print_str(va_list ap, char flag, int width, char length)
 {
 	int len;
 	char *str = va_arg(ap, char *);
 	(void)flag;
+	(void)width;
 	(void)length;
 
 	if (!str)
@@ -45,11 +47,12 @@ int print_str(va_list ap, char flag, char length)
  *
  * Return: 1.
  */
-int print_percent(va_list ap, char flag, char length)
+int print_percent(va_list ap, char flag, int width, char length)
 {
 	char percent = '%';
 	(void)ap;
 	(void)flag;
+	(void)width;
 	(void)length;
 
 	return (write(1, &percent, 1));
@@ -62,12 +65,13 @@ int print_percent(va_list ap, char flag, char length)
  *
  * Return: the count of printed characters.
  */
-int print_int(va_list ap, char flag, char length)
+int print_int(va_list ap, char flag, int width, char length)
 {
     long int n;
     unsigned int num;
-    int div = 1, count = 0;
-    char c;
+    int div = 1, count = 0, num_digits = 1;
+    char c, pad_char = ' ';
+	int padding;
 
     n = get_int(ap, length);
     num = n;
@@ -83,8 +87,14 @@ int print_int(va_list ap, char flag, char length)
         count += write(1, " ", 1);
 
     while (num / div >= 10)
+	{
         div *= 10;
-
+		num_digits++;
+	}
+	padding = width - num_digits;
+	while (padding-- > 0)
+		count += write(1, &pad_char, 1);
+		
     while (div >= 1)
     {
         c = '0' + num / div;
@@ -103,12 +113,13 @@ int print_int(va_list ap, char flag, char length)
  *
  * Return: the count of printed characters.
  */
-int print_binary(va_list ap, char flag, char length)
+int print_binary(va_list ap, char flag, int width, char length)
 {
 	unsigned int n = va_arg(ap, unsigned int);
 	int i, count = 0;
 	int size = sizeof(n) * 8;
 	(void)flag;
+	(void)width;
 	(void)length;
 
 	for (i = size - 1; i >= 0; i--)

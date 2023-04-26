@@ -52,4 +52,17 @@ char get_length(char c)
 		return (c);
 	
 	return (-1);
-}	
+}
+
+int get_width(const char **format)
+{
+	int width = 0;
+
+	while (_isdigit(**format))
+	{
+		width *= 10;
+		width += **format - '0';
+		(*format)++;
+	}
+	return (width);
+}
