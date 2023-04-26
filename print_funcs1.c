@@ -13,14 +13,34 @@ int print_unsigned_int(va_list ap, char flag, int width, char length)
 {
 	unsigned long int num;
 	char *str;
-	int count = 0;
+	int count = 0, str_len, padding_len;
+	char padding;
 	(void)flag;
 	(void)width;
 
 	num = get_unsigned_int(ap, length);
 	str = _itoa(num, 10);
-
-	count += write(1, str, _strlen(str));
+	str_len = _strlen(str);
+	
+	if (width > str_len)
+	{
+		padding_len = width - str_len;
+		padding = (flag == '0') ? '0' : ' ';
+		if (flag == '-')
+		{
+			count += write(1, str, str_len);
+			while (padding_len--)
+				count += write(1, &padding, 1);
+		}
+		else
+		{
+			while (padding_len--)
+				count += write(1, &padding, 1);
+			count += write(1, str, str_len);
+		}
+	}
+	else
+		count += write(1, str, _strlen(str));
 
 	free(str);
 	return (count);

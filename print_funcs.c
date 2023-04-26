@@ -52,8 +52,6 @@ int print_str(va_list ap, char flag, int width, char length)
 	char *str = va_arg(ap, char *);
 	int padding_len;
 	char padding;
-	(void)flag;
-	(void)width;
 	(void)length;
 
 	if (!str)
