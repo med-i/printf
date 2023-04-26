@@ -12,11 +12,29 @@
 int print_char(va_list ap, char flag, int width, char length)
 {
 	char chr = va_arg(ap, int);
-	(void)flag;
-	(void)width;
+	int count = 0;
+	int padding = width - 1;
 	(void)length;
 
-	return (write(1, &chr, 1));
+	if (flag == '-')
+	{
+		count += write(1, &chr, 1);
+		while (padding-- > 0)
+			count += write(1, " ", 1);
+	}
+	else if (flag == '0')
+	{
+		while (padding-- > 0)
+			count += write(1, "0", 1);
+		count += write(1, &chr, 1);
+	}
+	else
+	{
+		while (padding-- > 0)
+			count += write(1, " ", 1);
+		count += write(1, &chr, 1);
+	}
+	return (count);
 }
 
 /**
