@@ -44,7 +44,7 @@ char *_itoa(unsigned long int num, int base)
 	if (num == 0)
 	{
 		str = malloc(sizeof(char) * 2);
-		if (str == NULL)
+		if (!str)
 			return (NULL);
 		str[i++] = '0';
 	}
@@ -56,7 +56,7 @@ char *_itoa(unsigned long int num, int base)
 			digit++;
 		}
 		str = malloc(sizeof(char) * (digit + 1));
-		if (str == NULL)
+		if (!str)
 			return (NULL);
 
 		while (num != 0)

@@ -20,6 +20,8 @@ int print_unsigned_int(va_list ap, char flag, int width, char length)
 
 	num = get_unsigned_int(ap, length);
 	str = _itoa(num, 10);
+	if (!str)
+		return (-1);
 	str_len = _strlen(str);
 
 	if (width > str_len)
@@ -64,6 +66,8 @@ int print_octal(va_list ap, char flag, int width, char length)
 
 	num = get_unsigned_int(ap, length);
 	str = _itoa(num, 8);
+	if (!str)
+		return (-1);
 
 	if (flag == '#')
 		count += write(1, "0", 1);
@@ -91,6 +95,8 @@ int print_hex(va_list ap, char flag, int width, char length)
 
 	num = get_unsigned_int(ap, length);
 	str = _itoa(num, 16);
+	if (!str)
+		return (-1);
 
 	if (flag == '#')
 		count += write(1, "0x", 2);
@@ -118,6 +124,8 @@ int print_hex_uppercase(va_list ap, char flag, int width, char length)
 
 	num = get_unsigned_int(ap, length);
 	str = _itoa(num, 16);
+	if (!str)
+		return (-1);
 
 	if (flag == '#')
 		count += write(1, "0X", 2);
