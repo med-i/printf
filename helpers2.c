@@ -13,6 +13,19 @@ int _isdigit(char c)
 	return (0);
 }
 /**
+ * _tohex - converts @n to base 16
+ * @n: int to convert
+ *
+ * Return: n
+*/
+char _tohex(int n)
+{
+	if (n < 10)
+		return (n + '0');
+	else
+		return (n - 10 + 'A');
+}
+/**
  * get_code - function that converts @c to its hexadecimal ASCII representation
  * @c: the character to be converted.
  *
@@ -21,15 +34,20 @@ int _isdigit(char c)
 char *get_code(char c)
 {
 	char *code = malloc(3 * sizeof(char));
+	int code_int = (int)c;
 
-	code = _itoa((int)c, 16);
-
-	if (_strlen(code) < 2)
-		code[1] = '0';
+	if (code_int < 16)
+	{
+		code[0] = '0';
+		code[1] = _tohex(code_int);
+	}
+	else
+	{
+		code[0] = _tohex(code_int / 16);
+		code[1] = _tohex(code_int % 16);
+	}
 
 	code[2] = '\0';
-	code = _strrev(code);
-	_toupper(code);
 
 	return (code);
 }
