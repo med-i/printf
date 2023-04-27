@@ -24,6 +24,8 @@ int print_pointer(va_list ap, char flag, int width, char length)
 
 	add = (unsigned long int)ptr;
 	str = _itoa(add, 16);
+	if (!str)
+		return (-1);
 	count += write(1, "0x", 2);
 	count += write(1, str, _strlen(str));
 
